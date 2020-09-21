@@ -1,9 +1,12 @@
-# README
+# BILLABlE HOURS
 
 ## Brief Overview
-        - Whiles reading the assignment, it was evident four(4) tables had to be created.
+        ```Four(4) tables were created to record data.
+
         1. Users/Employees Table - contain information relating to employees of the said companies.
+
         2. Companies Table - contain information pertaining to companies/clients the firm renders service(s) to.
+
         3. Billable Hours Table - contain a lawyer's timesheet.
         4. Roles Table - contain roles in the law firm.
 
@@ -11,7 +14,7 @@
 
         - Only users/employees with finace roles are permitted to generate invoices.
 
-        - In a bid to secure the system against unauthorized users, JSON Web Tokens are used to authenticate users and every request made to the system.
+        - In a bid to secure the system against unauthorized users, JSON Web Tokens are used to authenticate users and every request made to the system.```
 
 ## Installation
 
