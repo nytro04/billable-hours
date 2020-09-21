@@ -1,19 +1,18 @@
 # frozen_string_literal: true
 
 class AuthenticationController < ApplicationController
-  def authenticate
-    user = User.find_by(email: authentication_params[:email])
-    
-    if user&.authenticate(authentication_params[:password])
-      json_response({ data: user },200)
-    else
-      json_response({ message: 'Invalid username/password' }, 401)
+  
+  skip_before_action :authenticate_request, only: :authenticate
+  
+    def authenticate
+      auth_token =
+        AuthenticateUser.new(auth_params[:email], auth_params[:password]).call
+      json_response(auth_token: auth_token)
     end
-  end
 
   private
 
-  def authentication_params
+  def auth_params
     params.permit(:email, :password)
   end
 end

@@ -14,26 +14,21 @@ RSpec.describe User, type: :model do
 
 
   describe '#lawyer?' do
-    it 'should calculate and return age of person' do
-      # data setup, method call, assertion
+    it 'should be lawyer?' do
       role = create(:role, name: 'Lawyer')
       user = create(:user, role_id: role.id)
-     # user.update(role: “lawyer”)
       expect(user.lawyer?).to be true
-      
     end
 
-    it 'should calculate and return age of person' do
-      # data setup, method call, assertion
+    it 'should not be lawyer?' do
       role = create(:role, name: 'Aban')
       user = create(:user, role_id: role.id)
       expect(user.lawyer?).to be false
-      
     end
   end
 
   describe '#finance?' do
-    it 'should calculate and return age of person' do
+    it 'should be finance?' do
       # data setup, method call, assertion
       role = create(:role, name: 'Finance')
       user = create(:user, role_id: role.id)
@@ -41,7 +36,7 @@ RSpec.describe User, type: :model do
       
     end
 
-    it 'should calculate and return age of person' do
+    it 'should not be finance?' do
       # data setup, method call, assertion
       role = create(:role, name: 'Aban')
       user = create(:user, role_id: role.id)
@@ -50,16 +45,15 @@ RSpec.describe User, type: :model do
     end
   end
   describe '#sysadmin?' do
-    it 'should calculate and return age of person' do
+    it 'should be sysadmin?' do
       # data setup, method call, assertion
       role = create(:role, name: 'Sysadmin')
       user = create(:user, role_id: role.id)
-     # user.update(role: “lawyer”)
       expect(user.sysadmin?).to be true
       
     end
 
-    it 'should calculate and return age of person' do
+    it 'should not be sysadmin?' do
       # data setup, method call, assertion
       role = create(:role, name: 'Aban')
       user = create(:user, role_id: role.id)

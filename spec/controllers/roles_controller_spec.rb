@@ -41,10 +41,13 @@ RSpec.describe RolesController, type: :controller do
     }
   end
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # RolesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
+
+  before(:each) do  
+    user = create(:user)
+    token = token_generator(user.id)
+    request.headers.merge!('Authorization': "Bearer #{token}")
+  end
 
   describe 'GET #index' do
     it 'returns a success response' do
@@ -99,7 +102,6 @@ RSpec.describe RolesController, type: :controller do
         role = Role.create! valid_attributes
         put :update, params: { id: role.to_param, role: new_attributes }, session: valid_session
         role.reload
-        # skip("Add assertions for updated state")
       end
 
       it 'renders a JSON response with the role' do

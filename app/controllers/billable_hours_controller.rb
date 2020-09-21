@@ -8,23 +8,19 @@ class BillableHoursController < ApplicationController
     @billable_hours = BillableHour.all
 
     render json: @billable_hours
-    # render :json => @billable_hours, :include => {:@billable_hours.companies => {:only => :name}}, :except => [:created_at, :updated_at]
   end
 
   def invoice
-
-
-    companies = Company.all
-
-  #####TODO::::: Copy line 22 to the end......Paste in the MODEL
-
-  #result = [] if @comapnies.present?     # call a method on your model Company model     results = Company.demo(@companies) end  render json: results   class Company < ActiveRecord       def demo(arr)         #  method implementation in here     end end
-
-  result = []
-    if companies.present?
-      result = BillableHour.invoice(companies)
+    if !current_user.finance?
+      render json: {message: "You're not permitted to perform this action"}, status: :unauthorized
+    else
+      companies = Company.all
+      result = []
+      if companies.present?
+        result = BillableHour.invoice(companies)
+      end
+      render json:  result
     end
-    render json:  result
   end
 
   # GET /billable_hours/1

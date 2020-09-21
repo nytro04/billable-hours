@@ -3,6 +3,7 @@
 require 'simplecov'
 require 'simplecov-console'
 require 'support/request_spec_helper'
+require 'support/controller_spec_helper'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
                                                                  SimpleCov::Formatter::HTMLFormatter,
@@ -22,4 +23,5 @@ RSpec.configure do |config|
   end
   config.shared_context_metadata_behavior = :apply_to_host_groups
   config.include RequestSpecHelper
+  config.include ControllerSpecHelper
 end

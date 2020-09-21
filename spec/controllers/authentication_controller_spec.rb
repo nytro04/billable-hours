@@ -1,14 +1,39 @@
 require 'rails_helper'
 
-RSpec.describe AuthenticationController, type: :controller do
-    # let(:valid_attributes) do
-#     {
-#       date: '2020-01-02',
-#       start_time: '08:00:00',
-#       end_time: '09:00:00',
-#       company_id: 1,
-#       employee_id: 1,
-#       billable_rate: 23.4
-#     }
-#   end
+RSpec.describe 'Authentication', type: :request do
+  # Authentication test suite
+  describe 'POST /auth/login' do
+   
+    let!(:user) { create(:user) }
+    let(:headers) { valid_headers.except('Authorization') }
+    let(:valid_credentials) do
+      {
+        email: user.email,
+        password: user.password
+      }.to_json
+    end
+    let(:invalid_credentials) do
+      {
+        email: Faker::Internet.email,
+        password: Faker::Internet.password
+      }.to_json
+    end
+
+    context 'When request is valid' do
+      before { post '/auth/login', params: valid_credentials, headers: headers }
+
+      it 'returns an authentication token' do
+        expect(json['auth_token']).not_to be_nil
+      end
+    end
+
+    # returns failure message when request is invalid
+    context 'When request is invalid' do
+      before { post '/auth/login', params: invalid_credentials, headers: headers }
+
+      it 'returns a failure message' do
+        expect(json['message']).to match(/Invalid credential/)
+      end
+    end
+  end
 end

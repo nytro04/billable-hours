@@ -13,7 +13,7 @@ RSpec.describe BillableHour, type: :model do
   it { should validate_presence_of(:end_time) }
 
   describe '#invoice' do
-    it 'should return company invoice' ,:focus do 
+    it 'should return company invoice' do 
       # data setup, method call, assertion
       company1 = create(:company,name: "Ecobank")
       company2 = create(:company,name: "SNNIT")
@@ -34,7 +34,7 @@ RSpec.describe BillableHour, type: :model do
       
     end
 
-    it 'should return not company invoice' ,:focus do 
+    it 'should return not company invoice' do 
       # data setup, method call, assertion
       company1 = create(:company,name: "Ecobank")
       company2 = create(:company,name: "SNNIT")

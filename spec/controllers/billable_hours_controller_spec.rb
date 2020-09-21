@@ -29,7 +29,6 @@ RSpec.describe BillableHoursController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # BillableHour. As you add validations to BillableHour, be sure to
   # adjust the attributes here as well.
-
   let(:valid_attributes) do
     {
       date: '2020-01-02',
@@ -52,33 +51,64 @@ RSpec.describe BillableHoursController, type: :controller do
     }
   end
 
+  let(:user) { create(:user) }
+  
+  let(:headers) { valid_headers }
+
+
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # BillableHoursController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before(:each) do
+    role = create(:role, name: 'Aban')
+    user = create(:user, role_id: role.id) 
+    token = token_generator(user.id)
+    request.headers.merge!('Authorization': "Bearer #{token}")
+  end
+
+
   describe 'GET #index' do
     it 'returns a success response' do
       billable_hour = BillableHour.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      get :index
       expect(response).to be_successful
     end
   end
 
-  describe 'GET #invoice',:focus do
-    it 'returns a success response' do
-      company1 = create(:company,name: "Ecobank")
-      company2 = create(:company,name: "SNNIT")
-      company3 = create(:company,name: "GCB")
+  describe 'GET #invoice' do
+    context 'with not finance role' do
+      it 'returns a false user check' do
+          role = create(:role, name: 'Aban')
+          user = create(:user, role_id: role.id) 
+          token = token_generator(user.id)
+          request.headers.merge!('Authorization': "Bearer #{token}")
 
-      role = create(:role, name: 'Lawyer')
-      user = create(:user, role_id: role.id)
+        get "invoice",params: {}
+        expect(user.finance?).to be false
+        expect(response).to have_http_status(401)
+      end
+    end
 
-      bill = create(:billable_hour,user: user,company_id: company1.id,billable_rate: 43,date: '2020-09-17',
-        start_time:'04:09:42', end_time: '06:09:42' )
-      get "invoice"
-      expect(response).to be_successful
-      expect(response).to have_http_status(200)
+    context 'with finance role' do
+      it 'returns a success response' do
+        role = create(:role, name: 'Finance')
+        user = create(:user, role_id: role.id) 
+        token = token_generator(user.id)
+        request.headers.merge!('Authorization': "Bearer #{token}")
+        
+        company1 = create(:company,name: "Ecobank")
+        company2 = create(:company,name: "SNNIT")
+        company3 = create(:company,name: "GCB")
+
+
+        bill = create(:billable_hour,user: user,company_id: company1.id,billable_rate: 43,date: '2020-09-17',
+          start_time:'04:09:42', end_time: '06:09:42' )
+        get "invoice",params: {}
+        expect(user.finance?).to be true
+        expect(response).to have_http_status(200)
+      end
     end
   end
 
