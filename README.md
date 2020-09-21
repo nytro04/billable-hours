@@ -1,20 +1,20 @@
 # BILLABlE HOURS
 
 ## Brief Overview
-        ```Four(4) tables were created to record data.
+        
+1. Users/Employees Table - contain information relating to employees of the said companies.
 
-        1. Users/Employees Table - contain information relating to employees of the said companies.
+2. Companies Table - contain information pertaining to companies/clients the firm renders service(s) to.
 
-        2. Companies Table - contain information pertaining to companies/clients the firm renders service(s) to.
+3. Billable Hours Table - contain a lawyer's timesheet.
 
-        3. Billable Hours Table - contain a lawyer's timesheet.
-        4. Roles Table - contain roles in the law firm.
+4. Roles Table - contain roles in the law firm.
 
-        - A role is assigned to a user/employee when created
+- A role is assigned to a user/employee when created
 
-        - Only users/employees with finace roles are permitted to generate invoices.
+- Only users/employees with finace roles are permitted to generate invoices.
 
-        - In a bid to secure the system against unauthorized users, JSON Web Tokens are used to authenticate users and every request made to the system.```
+- In a bid to secure the system against unauthorized users, JSON Web Tokens are used to authenticate users and every request made to the system.
 
 ## Installation
 
@@ -46,3 +46,28 @@
     run tests:
 
         $ bundle exec rspec
+
+## Endpoints
+
+Prefix Verb   URI Pattern                                                                              Controller#Action
+                                roles GET    /roles(.:format)                                                                         roles#index
+                                      POST   /roles(.:format)                                                                         roles#create
+                                 role GET    /roles/:id(.:format)                                                                     roles#show
+                                      PATCH  /roles/:id(.:format)                                                                     roles#update
+                                      PUT    /roles/:id(.:format)                                                                     roles#update
+                                      DELETE /roles/:id(.:format)                                                                     roles#destroy
+                            companies GET    /companies(.:format)                                                                     companies#index
+                                      POST   /companies(.:format)                                                                     companies#create
+                              company GET    /companies/:id(.:format)                                                                 companies#show
+                                      PATCH  /companies/:id(.:format)                                                                 companies#update
+                                      PUT    /companies/:id(.:format)                                                                 companies#update
+                                      DELETE /companies/:id(.:format)                                                                 companies#destroy
+                       billable_hours GET    /billable_hours(.:format)                                                                billable_hours#index
+                                      POST   /billable_hours(.:format)                                                                billable_hours#create
+                        billable_hour GET    /billable_hours/:id(.:format)                                                            billable_hours#show
+                                      PATCH  /billable_hours/:id(.:format)                                                            billable_hours#update
+                                      PUT    /billable_hours/:id(.:format)                                                            billable_hours#update
+                                      DELETE /billable_hours/:id(.:format)                                                            billable_hours#destroy
+                           auth_login POST   /auth/login(.:format)                                                                    authentication#authenticate
+                               signup POST   /signup(.:format)                                                                        users#create
+                              invoice GET    /invoice(.:format)                                                                       billable_hours#invoice
