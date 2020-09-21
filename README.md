@@ -49,25 +49,26 @@
 
 ## Endpoints
 
-Prefix Verb   URI Pattern                                                                              Controller#Action
-                                roles GET    /roles(.:format)                                                                         roles#index
-                                      POST   /roles(.:format)                                                                         roles#create
-                                 role GET    /roles/:id(.:format)                                                                     roles#show
-                                      PATCH  /roles/:id(.:format)                                                                     roles#update
-                                      PUT    /roles/:id(.:format)                                                                     roles#update
-                                      DELETE /roles/:id(.:format)                                                                     roles#destroy
-                            companies GET    /companies(.:format)                                                                     companies#index
-                                      POST   /companies(.:format)                                                                     companies#create
-                              company GET    /companies/:id(.:format)                                                                 companies#show
-                                      PATCH  /companies/:id(.:format)                                                                 companies#update
-                                      PUT    /companies/:id(.:format)                                                                 companies#update
-                                      DELETE /companies/:id(.:format)                                                                 companies#destroy
-                       billable_hours GET    /billable_hours(.:format)                                                                billable_hours#index
-                                      POST   /billable_hours(.:format)                                                                billable_hours#create
-                        billable_hour GET    /billable_hours/:id(.:format)                                                            billable_hours#show
-                                      PATCH  /billable_hours/:id(.:format)                                                            billable_hours#update
-                                      PUT    /billable_hours/:id(.:format)                                                            billable_hours#update
-                                      DELETE /billable_hours/:id(.:format)                                                            billable_hours#destroy
-                           auth_login POST   /auth/login(.:format)                                                                    authentication#authenticate
-                               signup POST   /signup(.:format)                                                                        users#create
-                              invoice GET    /invoice(.:format)                                                                       billable_hours#invoice
+<pre><code>                        Prefix Verb   URI Pattern                                                                              Controller#Action
+                            roles GET    /roles(.:format)                                                                         roles#index
+                                  POST   /roles(.:format)                                                                         roles#create
+                             role GET    /roles/:id(.:format)                                                                     roles#show
+                                  PATCH  /roles/:id(.:format)                                                                     roles#update
+                                  PUT    /roles/:id(.:format)                                                                     roles#update
+                                  DELETE /roles/:id(.:format)                                                                     roles#destroy
+                        companies GET    /companies(.:format)                                                                     companies#index
+                                  POST   /companies(.:format)                                                                     companies#create
+                          company GET    /companies/:id(.:format)                                                                 companies#show
+                                  PATCH  /companies/:id(.:format)                                                                 companies#update
+                                  PUT    /companies/:id(.:format)                                                                 companies#update
+                                  DELETE /companies/:id(.:format)                                                                 companies#destroy
+                   billable_hours GET    /billable_hours(.:format)                                                                billable_hours#index
+                                  POST   /billable_hours(.:format)                                                                billable_hours#create
+                    billable_hour GET    /billable_hours/:id(.:format)                                                            billable_hours#show
+                                  PATCH  /billable_hours/:id(.:format)                                                            billable_hours#update
+                                  PUT    /billable_hours/:id(.:format)                                                            billable_hours#update
+                                  DELETE /billable_hours/:id(.:format)                                                            billable_hours#destroy
+                       auth_login POST   /auth/login(.:format)                                                                    authentication#authenticate
+                           signup POST   /signup(.:format)                                                                        users#create
+                          invoice GET    /invoice(.:format)                                                                       billable_hours#invoice
+</code></pre>
