@@ -1,4 +1,4 @@
-# BILLABlE HOURS
+# BILLABLE HOURS
 
 ## Brief Overview
         
@@ -48,7 +48,10 @@
         $ bundle exec rspec
 
 ## Endpoints
-
+- /auth/login - user authentication {email, password}
+- /signup - user signup {name,email,password,role_id}
+- /invoice - generate user invoice
+- /billable_hours - submit timesheets
 <pre><code>                        Prefix Verb   URI Pattern                                                                              Controller#Action
                             roles GET    /roles(.:format)                                                                         roles#index
                                   POST   /roles(.:format)                                                                         roles#create
