@@ -8,4 +8,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Role.create!([{name: 'Lawyer'},{name: 'Finance'},{name: 'Sysadmin'}])
 
+User.create!([{name: Faker::Name.name, email: "lawyer@gmail.com",role_id: Role.find_by(name: 'Lawyer').id,password: "password",password_confirmation: "password"},
+    {name: Faker::Name.name, email: "finance@gmail.com",role_id: Role.find_by(name: 'Finance').id,password: "password",password_confirmation: "password"},
+    {name: Faker::Name.name, email: "sysadmin@gmail.com",role_id: Role.find_by(name: 'Sysadmin').id,password: "password",password_confirmation: "password"}])
+
 Company.create!([{name: 'MTN'},{name: 'Fidelity'},{name: 'Ecobank'}])
